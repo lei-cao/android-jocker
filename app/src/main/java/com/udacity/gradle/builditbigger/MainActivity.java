@@ -5,10 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
-import com.leicao.jokes.Joker;
-
 
 public class MainActivity extends ActionBarActivity {
 
@@ -34,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings){
             return true;
         }
 
@@ -42,8 +38,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view){
-        Joker joker = new Joker();
-        Toast.makeText(this, joker.getJoke(), Toast.LENGTH_SHORT).show();
+        new JokeAsyncTask().execute(this);
     }
 
 
