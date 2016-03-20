@@ -1,6 +1,7 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -15,6 +16,12 @@ import java.io.IOException;
 public class JokeAsyncTask extends AsyncTask<Context, Void, String> {
     private static JokeApi jokeApi = null;
     private Context context;
+    private AsyncTaskOnPostExecuteListener listener;
+
+    public JokeAsyncTask(Context context, AsyncTaskOnPostExecuteListener listener) {
+        this.context = context;
+        this.listener = listener;
+    }
 
     @Override
     protected String doInBackground(Context... params) {
@@ -31,8 +38,6 @@ public class JokeAsyncTask extends AsyncTask<Context, Void, String> {
             jokeApi = builder.build();
         }
 
-        context = params[0];
-
         try {
             return jokeApi.tell().execute().getData();
         } catch (IOException e) {
@@ -42,8 +47,11 @@ public class JokeAsyncTask extends AsyncTask<Context, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        listener.onPostExecute(result, context);
     }
 
+    public interface AsyncTaskOnPostExecuteListener {
+        void onPostExecute(String joke, Context context);
+    }
 }
 
