@@ -39,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view){
+    public void tellJoke(){
         JokeAsyncTask.AsyncTaskOnPostExecuteListener listener = new JokeAsyncTask.AsyncTaskOnPostExecuteListener() {
             @Override
             public void onPostExecute(String joke, Context context) {
@@ -50,6 +50,4 @@ public class MainActivity extends ActionBarActivity {
         };
         new JokeAsyncTask(this, listener).execute();
     }
-
-
 }
