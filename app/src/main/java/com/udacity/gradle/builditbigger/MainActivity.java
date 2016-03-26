@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 public class MainActivity extends ActionBarActivity {
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +34,25 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings){
+        if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(){
-        JokeAsyncTask.AsyncTaskOnPostExecuteListener listener = new JokeAsyncTask.AsyncTaskOnPostExecuteListener() {
+    public void tellJoke() {
+
+        spinner = (ProgressBar) findViewById(R.id.progressBar1);
+        JokeAsyncTask.AsyncTaskListener listener = new JokeAsyncTask.AsyncTaskListener() {
             @Override
-            public void onPostExecute(String joke, Context context) {
+            public void onPreExecute() {
+                spinner.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onPostExecute(final String joke, final Context context) {
+                spinner.setVisibility(View.INVISIBLE);
                 Intent i = new Intent(context, JokeActivity.class);
                 i.putExtra("JOKE_STRING", joke);
                 context.startActivity(i);

@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by leicao on 25/2/16.
  */
-public class JokeAsyncTaskTest extends InstrumentationTestCase implements JokeAsyncTask.AsyncTaskOnPostExecuteListener {
+public class JokeAsyncTaskTest extends InstrumentationTestCase implements JokeAsyncTask.AsyncTaskListener {
     CountDownLatch signal;
     Context context;
     JokeAsyncTask task;
@@ -57,6 +57,10 @@ public class JokeAsyncTaskTest extends InstrumentationTestCase implements JokeAs
          * from there instead.
          */
         signal.countDown();
+    }
+
+    @Override
+    public void onPreExecute() {
 
     }
 }

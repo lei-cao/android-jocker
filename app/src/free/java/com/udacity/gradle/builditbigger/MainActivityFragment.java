@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -41,6 +42,7 @@ public class MainActivityFragment extends Fragment {
 
         // Create the InterstitialAd
         mInterstitialAd = new PublisherInterstitialAd(context);
+        mInterstitialAd.setAdUnitId("/6499/example/interstitial");
 
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
