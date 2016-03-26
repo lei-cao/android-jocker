@@ -17,3 +17,12 @@ allprojects {
         jcenter()
     }
 }
+
+task runJokeTest(type: GradleBuild) {
+    dependsOn ":backend:appengineRun"
+    project(":backend").afterEvaluate { backend ->
+        backend.extensions.appengine.daemon = true
+    }
+
+    tasks = [':app:connectedAndroidTest',':backend:appengineStop']
+}
