@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.udacity.gradle.builditbigger.jokeactivity.JokeActivity;
+
 public class MainActivity extends ActionBarActivity {
     private ProgressBar spinner;
 

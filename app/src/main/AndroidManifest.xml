@@ -23,7 +23,7 @@
         </activity>
 
         <activity
-            android:name=".JokeActivity"
+            android:name=".jokeactivity.JokeActivity"
             android:parentActivityName=".MainActivity" >
         </activity>
     </application>
